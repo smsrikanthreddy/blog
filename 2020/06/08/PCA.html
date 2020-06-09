@@ -107,7 +107,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      4 min read
+      8 min read
     
 </span></p>
 
@@ -156,9 +156,24 @@ window.onload = wrap_img;
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Principal-Component-Analysis">Principal Component Analysis<a class="anchor-link" href="#Principal-Component-Analysis"> </a></h3><blockquote><p>A tutorial on PCA</p>
+</blockquote>
+<ul>
+<li>toc:true - badges: true</li>
+<li>comments: true</li>
+<li>categories: [jupyter]</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Reference :-</p>
 <ol>
+<li><a href="https://builtin.com/data-science/step-step-explanation-principal-component-analysis">https://builtin.com/data-science/step-step-explanation-principal-component-analysis</a></li>
 <li><a href="https://drscotthawley.github.io/PCA-From-Scratch/">https://drscotthawley.github.io/PCA-From-Scratch/</a></li>
+<li><a href="https://www.dezyre.com/data-science-in-python-tutorial/principal-component-analysis-tutorial">https://www.dezyre.com/data-science-in-python-tutorial/principal-component-analysis-tutorial</a></li>
 </ol>
 
 </div>
@@ -166,7 +181,7 @@ window.onload = wrap_img;
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Introduction">Introduction<a class="anchor-link" href="#Introduction"> </a></h4>
+<h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction"> </a></h2>
 </div>
 </div>
 </div>
@@ -189,7 +204,7 @@ saving tons of computation</p>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="what-we'll-learn">what we'll learn<a class="anchor-link" href="#what-we'll-learn"> </a></h4>
+<h3 id="what-we'll-learn">what we'll learn<a class="anchor-link" href="#what-we'll-learn"> </a></h3>
 </div>
 </div>
 </div>
@@ -370,6 +385,116 @@ z = \frac{value - mean}{standard deviation}
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Geometrically speaking, principal components represent the directions of the data that explain a maximal amount of variance, that is to say, the lines that capture most information of the data. The relationship between variance and information here, is that, the larger the variance carried by a line, the larger the dispersion of the data points along it, and the larger the dispersion along a line, the more the information it has. To put all this simply, just think of principal components as new axes that provide the best angle to see and evaluate the data, so that the differences between the observations are better visible</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Step-4:-HOW-PCA-CONSTRUCTS-THE-PRINCIPAL-COMPONENTS?">Step 4: HOW PCA CONSTRUCTS THE PRINCIPAL COMPONENTS?<a class="anchor-link" href="#Step-4:-HOW-PCA-CONSTRUCTS-THE-PRINCIPAL-COMPONENTS?"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The First Principal Component has the largest variance of the data. It projects most of the data points on its line. Second Principal Component is uncorelated to the first principal and perpendicular to it also and it accounts for the next highest variance and this continues. Or mathematically speaking, it’s the line that maximizes the variance (the average of the squared distances from the projected points (red dots) to the origin). This continues until a total of p principal components have been calculated, equal to the original number of variables</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now that we understood what we mean by principal components, let’s go back to eigenvectors and eigenvalues. What you firstly need to know about them is that they always come in pairs, so that every eigenvector has an eigenvalue. And their number is equal to the number of dimensions of the data. For example, for a 3-dimensional data set, there are 3 variables, therefore there are 3 eigenvectors with 3 corresponding eigenvalues.</p>
+<p>Without further ado, it is eigenvectors and eigenvalues who are behind all the magic explained above, because the eigenvectors of the Covariance matrix are actually the directions of the axes where there is the most variance(most information) and that we call Principal Components. And eigenvalues are simply the coefficients attached to eigenvectors, which give the amount of variance carried in each Principal Component.</p>
+<p>By ranking your eigenvectors in order of their eigenvalues, highest to lowest, you get the principal components in order of significance.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Example:">Example:<a class="anchor-link" href="#Example:"> </a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>let’s suppose that our data set is 2-dimensional with 2 variables x,y and that the eigenvectors and eigenvalues of the covariance matrix are as follows:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;C:/Users/srmetlakunta/Desktop/eigen_vectors.png&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="data:image/png;base64,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
+" />
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we rank the eigenvalues in descending order, we get λ1&gt;λ2, which means that the eigenvector that corresponds to the first principal component (PC1) is v1 and the one that corresponds to the second component (PC2) isv2.</p>
+<p>After having the principal components, to compute the percentage of variance (information) accounted for by each component, we divide the eigenvalue of each component by the sum of eigenvalues. If we apply this on the example above, we find that PC1 and PC2 carry respectively 96% and 4% of the variance of the data.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Step-5:-Feature-Vector">Step 5: Feature Vector<a class="anchor-link" href="#Step-5:-Feature-Vector"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this step we choose to keep all or some of the principal components. Generally we discard low eigen values components to create a reduced matrix of input called Feature Vector. This we call as dimensionality reduced matrix and the technique is called dimensionality reduction technique</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So, the feature vector is simply a matrix that has as columns the eigenvectors of the components that we decide to keep. This makes it the first step towards dimensionality reduction, because if we choose to keep only p eigenvectors (components) out of n, the final data set will have only p dimensions</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To form the principal components for compuation, we take the transpose of the feature vector and left-multiply it with the transpose of scaled version of original dataset.</p>
+<p>NewData = FeatureVector^T x ScaledData^T</p>
+<p>Here,</p>
+<p>NewData is the Matrix consisting of the principal components,</p>
+<p>FeatureVector is the matrix we formed using the eigenvectors we chose to keep, and</p>
+<p>ScaledData is the scaled version of original dataset</p>
+<p>(‘T’ in the superscript denotes transpose of a matrix which is formed by interchanging the rows to columns and vice versa. In particular, a 2x3 matrix has a transpose of size 3x2)</p>
 
 </div>
 </div>
