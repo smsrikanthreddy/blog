@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>https://smsrikanthreddy.github.io/blog/2020/06/08/PCA.html</loc>
+<loc>https://smsrikanthreddy.github.io/blog/jupyter/2020/06/08/PCA.html</loc>
 <lastmod>2020-06-08T00:00:00-05:00</lastmod>
 </url>
 <url>
-<loc>https://smsrikanthreddy.github.io/blog/2020/11/30/Evaluation_Metrics.html</loc>
+<loc>https://smsrikanthreddy.github.io/blog/jupyter/2020/11/30/Evaluation_Metrics.html</loc>
 <lastmod>2020-11-30T00:00:00-06:00</lastmod>
 </url>
 <url>
-<loc>https://smsrikanthreddy.github.io/blog/2021/04/15/Neural-Collaborative-Filtering.html</loc>
+<loc>https://smsrikanthreddy.github.io/blog/jupyter/2021/04/15/Neural-Collaborative-Filtering.html</loc>
 <lastmod>2021-04-15T00:00:00-05:00</lastmod>
 </url>
 <url>
-<loc>https://smsrikanthreddy.github.io/blog/2021/04/17/Math-and-Jupyter-commands-in-Notebook.html</loc>
+<loc>https://smsrikanthreddy.github.io/blog/jupyter/2021/04/17/Math-and-Jupyter-commands-in-Notebook.html</loc>
 <lastmod>2021-04-17T00:00:00-05:00</lastmod>
 </url>
 <url>
-<loc>https://smsrikanthreddy.github.io/blog/2021/04/30/Numpy-Tutorial.html</loc>
+<loc>https://smsrikanthreddy.github.io/blog/jupyter/2021/04/30/Numpy-Tutorial.html</loc>
 <lastmod>2021-04-30T00:00:00-05:00</lastmod>
+</url>
+<url>
+<loc>https://smsrikanthreddy.github.io/blog/2021/05/01/Pandas-Advanced.html</loc>
+<lastmod>2021-05-01T00:00:00-05:00</lastmod>
 </url>
 <url>
 <loc>https://smsrikanthreddy.github.io/blog/about/</loc>

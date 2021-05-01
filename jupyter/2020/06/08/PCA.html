@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Principal Component Analysis | My DataScience Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Principal Component Analysis" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A tutorial on PCA" />
+<meta property="og:description" content="A tutorial on PCA" />
+<link rel="canonical" href="https://smsrikanthreddy.github.io/blog/jupyter/2020/06/08/PCA.html" />
+<meta property="og:url" content="https://smsrikanthreddy.github.io/blog/jupyter/2020/06/08/PCA.html" />
+<meta property="og:site_name" content="My DataScience Blog" />
+<meta property="og:image" content="https://smsrikanthreddy.github.io/blog/my_icons/PCA/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-06-08T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"A tutorial on PCA","headline":"Principal Component Analysis","dateModified":"2020-06-08T00:00:00-05:00","datePublished":"2020-06-08T00:00:00-05:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://smsrikanthreddy.github.io/blog/jupyter/2020/06/08/PCA.html"},"image":"https://smsrikanthreddy.github.io/blog/my_icons/PCA/logo.png","url":"https://smsrikanthreddy.github.io/blog/jupyter/2020/06/08/PCA.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://smsrikanthreddy.github.io/blog/feed.xml" title="My DataScience Blog" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Principal Component Analysis | My DataScience Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Principal Component Analysis" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A tutorial on PCA" />
+<meta property="og:description" content="A tutorial on PCA" />
+<link rel="canonical" href="https://smsrikanthreddy.github.io/blog/jupyter/2020/06/08/PCA.html" />
+<meta property="og:url" content="https://smsrikanthreddy.github.io/blog/jupyter/2020/06/08/PCA.html" />
+<meta property="og:site_name" content="My DataScience Blog" />
+<meta property="og:image" content="https://smsrikanthreddy.github.io/blog/my_icons/PCA/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-06-08T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"A tutorial on PCA","headline":"Principal Component Analysis","dateModified":"2020-06-08T00:00:00-05:00","datePublished":"2020-06-08T00:00:00-05:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://smsrikanthreddy.github.io/blog/jupyter/2020/06/08/PCA.html"},"image":"https://smsrikanthreddy.github.io/blog/my_icons/PCA/logo.png","url":"https://smsrikanthreddy.github.io/blog/jupyter/2020/06/08/PCA.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://smsrikanthreddy.github.io/blog/feed.xml" title="My DataScience Blog" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">My DataScience Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About Me</a><a class="page-link" href="/blog/search/">Search</a><a class="page-link" href="/blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Principal Component Analysis</h1><p class="page-description">A tutorial on PCA</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-06-08T00:00:00-05:00" itemprop="datePublished">
+        Jun 8, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      8 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/blog/categories/#jupyter">jupyter</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/smsrikanthreddy/blog/tree/master/_notebooks/2020-06-08-PCA.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/smsrikanthreddy/blog/master?filepath=_notebooks%2F2020-06-08-PCA.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/smsrikanthreddy/blog/blob/master/_notebooks/2020-06-08-PCA.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#Introduction">Introduction </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#what-we'll-learn">what we&#39;ll learn </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Covariance">Covariance </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#STEP-BY-STEP-EXPLANATION-OF-PCA">STEP BY STEP EXPLANATION OF PCA </a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#STEP-1:-STANDARDIZATION">STEP 1: STANDARDIZATION </a></li>
+<li class="toc-entry toc-h4"><a href="#STEP-2:-COVARIANCE-MATRIX-COMPUTATION">STEP 2: COVARIANCE MATRIX COMPUTATION </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#STEP-3:-COMPUTE-THE-EIGENVECTORS-AND-EIGENVALUES-OF-THE-COVARIANCE-MATRIX-TO-IDENTIFY-THE-PRINCIPAL-COMPONENTS">STEP 3: COMPUTE THE EIGENVECTORS AND EIGENVALUES OF THE COVARIANCE MATRIX TO IDENTIFY THE PRINCIPAL COMPONENTS </a></li>
+<li class="toc-entry toc-h3"><a href="#Step-4:-HOW-PCA-CONSTRUCTS-THE-PRINCIPAL-COMPONENTS?">Step 4: HOW PCA CONSTRUCTS THE PRINCIPAL COMPONENTS? </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Example:">Example: </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#Step-5:-Feature-Vector">Step 5: Feature Vector </a></li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-06-08-PCA.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Introduction">
+<a class="anchor" href="#Introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction<a class="anchor-link" href="#Introduction"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>PCA forms the basis for any ML enthusiasits. It helps in reducing the number of features by keeping almost all the data within its components</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Put simply, PCA involves making a coordinate transformation (i.e. rotation) from the arbitrary axes (or "features")
+you started with to set of axes 'aligned with the data itself,' and doing this almost always means that you can get 
+rid of few of these "components" of data that have small variance without suffering much in the way of accuracy while 
+saving tons of computation</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="what-we'll-learn">
+<a class="anchor" href="#what-we'll-learn" aria-hidden="true"><span class="octicon octicon-link"></span></a>what we'll learn<a class="anchor-link" href="#what-we'll-learn"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We'll define the following terms as we go, but here's the process in a nutshell:</p>
+<p>Covariance: Find the covariance matrix for your dataset <br>
+Eigenvectors: Find the eigenvectors of that matrix (these are the "components" btw) <br>
+Ordering: Sort the eigenvectors/'dimensions' from biggest to smallest variance <br>
+Projection / Data reduction: Use the eigenvectors corresponding to the largest variance to project the dataset into a reduced- dimensional space <br>
+(Check: How much did we lose by that truncation?)<br></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Covariance">
+<a class="anchor" href="#Covariance" aria-hidden="true"><span class="octicon octicon-link"></span></a>Covariance<a class="anchor-link" href="#Covariance"> </a>
+</h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If you got two data dimensions, and they vary together, then they are co-variant</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="STEP-BY-STEP-EXPLANATION-OF-PCA">
+<a class="anchor" href="#STEP-BY-STEP-EXPLANATION-OF-PCA" aria-hidden="true"><span class="octicon octicon-link"></span></a>STEP BY STEP EXPLANATION OF PCA<a class="anchor-link" href="#STEP-BY-STEP-EXPLANATION-OF-PCA"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="STEP-1:-STANDARDIZATION">
+<a class="anchor" href="#STEP-1:-STANDARDIZATION" aria-hidden="true"><span class="octicon octicon-link"></span></a>STEP 1: STANDARDIZATION<a class="anchor-link" href="#STEP-1:-STANDARDIZATION"> </a>
+</h5>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>standardization is one of the important step before doing PCA or any ML problem. There could be columns whose values could be in range of 0 to 1 or 100 to 1000. so that the domination of features whose range is 100 to 1000 is more compared to 0 to 1.</p>
+<p>The standardization is done using the below formula.</p>
+<p>Mathematically it is done by subtracting the mean and dividing by the standard deviation for each feature.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+\begin{equation*}
+z = \frac{value - mean}{standard deviation}
+\end{equation*}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Once the standardization is done, all the variables will be transformed to the same scale.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="STEP-2:-COVARIANCE-MATRIX-COMPUTATION">
+<a class="anchor" href="#STEP-2:-COVARIANCE-MATRIX-COMPUTATION" aria-hidden="true"><span class="octicon octicon-link"></span></a>STEP 2: COVARIANCE MATRIX COMPUTATION<a class="anchor-link" href="#STEP-2:-COVARIANCE-MATRIX-COMPUTATION"> </a>
+</h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The aim of this step is to understand how the variables of the input data set are varying from the mean with respect to each other, or in other words, to see if there is any relationship between them. Because sometimes, variables are highly correlated in such a way that they contain redundant information. So, in order to identify these correlations, we compute the covariance matrix.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The covariance matrix is a p × p symmetric matrix (where p is the number of dimensions) that has as entries the covariances associated with all possible pairs of the initial variables. For example, for a 3-dimensional data set with 3 variables x, y, and z, the covariance matrix is a 3×3 matrix of this from:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">"./my_icons/PCA/PrincipalComponentAnalysiCovarianceMatrix.png"</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="data:image/png;base64,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%0A">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since the covariance of a variable with itself is its variance (Cov(a,a)=Var(a)), in the main diagonal (Top left to bottom right) we actually have the variances of each initial variable. And since the covariance is commutative (Cov(a,b)=Cov(b,a)), the entries of the covariance matrix are symmetric with respect to the main diagonal, which means that the upper and the lower triangular portions are equal.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What do the covariances that we have as entries of the matrix tell us about the correlations between the variables?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It’s actually the sign of the covariance that matters :</p>
+<p>. if positive then : the two variables increase or decrease together (correlated) <br>
+. if negative then : One increases when the other decreases (Inversely correlated)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now, that we know that the covariance matrix is not more than a table that summaries the correlations between all the possible pairs of variables, let’s move to the next step</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="STEP-3:-COMPUTE-THE-EIGENVECTORS-AND-EIGENVALUES-OF-THE-COVARIANCE-MATRIX-TO-IDENTIFY-THE-PRINCIPAL-COMPONENTS">
+<a class="anchor" href="#STEP-3:-COMPUTE-THE-EIGENVECTORS-AND-EIGENVALUES-OF-THE-COVARIANCE-MATRIX-TO-IDENTIFY-THE-PRINCIPAL-COMPONENTS" aria-hidden="true"><span class="octicon octicon-link"></span></a>STEP 3: COMPUTE THE EIGENVECTORS AND EIGENVALUES OF THE COVARIANCE MATRIX TO IDENTIFY THE PRINCIPAL COMPONENTS<a class="anchor-link" href="#STEP-3:-COMPUTE-THE-EIGENVECTORS-AND-EIGENVALUES-OF-THE-COVARIANCE-MATRIX-TO-IDENTIFY-THE-PRINCIPAL-COMPONENTS"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Eigenvectors and eigenvalues are the linear algebra concepts that we need to compute from the covariance matrix in order to determine the principal components of the data</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Principal components are new variables that are constructed as linear combinations or mixtures of the initial variables. These combinations are done in such a way that the new variables (i.e., principal components) are uncorrelated and most of the information within the initial variables is squeezed or compressed into the first components. So, the idea is 10-dimensional data gives you 10 principal components, but PCA tries to put maximum possible information in the first component, then maximum remaining information in the second and so on</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Organizing information in principal components this way, will allow you to reduce dimensionality without losing much information, and this by discarding the components with low information and considering the remaining components as your new variables.</p>
+<p>An important thing to realize here is that, the principal components are less interpretable and don’t have any real meaning since they are constructed as linear combinations of the initial variables</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Geometrically speaking, principal components represent the directions of the data that explain a maximal amount of variance, that is to say, the lines that capture most information of the data. The relationship between variance and information here, is that, the larger the variance carried by a line, the larger the dispersion of the data points along it, and the larger the dispersion along a line, the more the information it has. To put all this simply, just think of principal components as new axes that provide the best angle to see and evaluate the data, so that the differences between the observations are better visible</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Step-4:-HOW-PCA-CONSTRUCTS-THE-PRINCIPAL-COMPONENTS?">
+<a class="anchor" href="#Step-4:-HOW-PCA-CONSTRUCTS-THE-PRINCIPAL-COMPONENTS?" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 4: HOW PCA CONSTRUCTS THE PRINCIPAL COMPONENTS?<a class="anchor-link" href="#Step-4:-HOW-PCA-CONSTRUCTS-THE-PRINCIPAL-COMPONENTS?"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The First Principal Component has the largest variance of the data. It projects most of the data points on its line. Second Principal Component is uncorelated to the first principal and perpendicular to it also and it accounts for the next highest variance and this continues. Or mathematically speaking, it’s the line that maximizes the variance (the average of the squared distances from the projected points (red dots) to the origin). This continues until a total of p principal components have been calculated, equal to the original number of variables</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now that we understood what we mean by principal components, let’s go back to eigenvectors and eigenvalues. What you firstly need to know about them is that they always come in pairs, so that every eigenvector has an eigenvalue. And their number is equal to the number of dimensions of the data. For example, for a 3-dimensional data set, there are 3 variables, therefore there are 3 eigenvectors with 3 corresponding eigenvalues.</p>
+<p>Without further ado, it is eigenvectors and eigenvalues who are behind all the magic explained above, because the eigenvectors of the Covariance matrix are actually the directions of the axes where there is the most variance(most information) and that we call Principal Components. And eigenvalues are simply the coefficients attached to eigenvectors, which give the amount of variance carried in each Principal Component.</p>
+<p>By ranking your eigenvectors in order of their eigenvalues, highest to lowest, you get the principal components in order of significance.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Example:">
+<a class="anchor" href="#Example:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example:<a class="anchor-link" href="#Example:"> </a>
+</h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>let’s suppose that our data set is 2-dimensional with 2 variables x,y and that the eigenvectors and eigenvalues of the covariance matrix are as follows:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">"./my_icons/PCA/eigen_vectors.png"</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdIAAACfCAIAAADCs89nAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAACChSURBVHhe7Z2Ldds410WTv4OkhHEJoxLiEqISohLsEuwSohLiEjIlxCUkJdgl5NvmgfFDeIl60RZ19lrj4QXxuACBw0uQdj7+/fv3gzHGmKn4v/B/Y4wxk2DZNcaYSbHsGmPMpMxKdj8WLJfLcM68D7gi4dokhHPGXAazeqXGAv7x48fXr1+Dbd49Dw8PCLHf65qLwpsMxhgzKZZdY4yZFG8yVHh+fr69veXg06dPHHNwd3fH8XByO4+Pj+v1Oua/ubmJx//99x+nqO2ff/5RSpWrqys68u+//wa7AQ3xkB6MwW3aSmtWL1IHWuAYcEAlf/78YQy/ffumUymcur+/V23kxMNqtvF4k8FcIsz42UB3UKtg7MuvX7+QlZ8/fwb771+OSSE92F2+f/+OGD09PcnkAAnTMXBWw14FOSbP79+/g10j1oZXX758iQ0BHqK5qZ99TYw58Qp0DNTMWcoG+5WyfgQ9Hag94HrRVjCMuQwc7eYsFgt0M9PH1WpFaIniBLsBAeP19TXZYqCKSWIcZMJPzDL2VEwtfScDzVXDYXwgjyr//PmzdFCnBMEj0bR0E2hdBxkErVQiyQMCWARUx4JBUH9jRzCpjSJovVIUqFKQu4VS9sDRrrlEXrR3LtCdA6NdKVFZSSs9AxFMY1tApFCuYPz9m52NIF4xikTFqiEkd4LogIRVxxlpeqs50mOYrKpKt0lM3SAFgjEwckz6qJJgGHMZ+JXaBtrfjCFeRCk624LAjShSghVBudIYuRrDUpD02CiRb1YJEGxqyzXYA6U/lE2bqDZHxP3t27cYcStPtWsxD2ch80pKnblkjNmKZXcDpI2fpVopRWdbSLmqShcpRYo6kdR0E7bMg5gizemzPBqNJvJ4rkYjel+nY0qVe7vKnwooDv/+/Tu9N1BQIhvvBLTOz/JuZIzZBwW984DuHPjM2xmTzikhVeKA53e07+bmZowzKGP6WqwKVZV54u5zPIt69lskm0LUPjgvLQ72vl0bgzcZzAUyqxnPAn5D2VWGqH1SKPQrbtqWoF/VbdwUaks/M0ihrIJrftJWpyExpjmpaqby6hr1x1O41O/aSCy75gKx7G4wyMtBspvpGjr16dOnTMUEiUSRwWjQz4PEpzsS6GBHVcncbw5XBQ5nMbjq51SwB5Sz2rXxWHbNBeK93WOC8GXvndCv5+fn+/v7YCeQWL46y+jkWa/X19fXKGkU3z9//pCifdiSrc0R5wq0m0oWiwWeh3MDiqwjna4ZY3oE+Z0FdOdto93qzinpCFYwEggVt3pLwWoelJFq02d8UrQD24pAxzQXIZKlKoRVJsdQbimQWO3aeBztmgvE0e4GUq4W/WiRs1k8GCk/gSCcJFRECoNdgzwUrOa5vb1FGVNvaR1ZVASafd4Aaq7lXol6GgNnmdXi/a87jDEllt0NJGSPj48yI2M+DuNsWbCFcvZ1vJOHU9V0velq+V/eVNDiqwEOQlJCTFTHx/fOGNPBsruBtKyM4CRAfZXkbCleSik/xR0jYZ08hMBVoQQksvSzFZPSBKcga0uVR5lWhVmLra6ZKjygcHtbr9fBft/gp/6O0kiYQuS/vr6mj4vFotVN0u/v78kpKBVONFDmYCQwXVerlSrRL+6HEwkncuk4hM2GWUB3DtzbBbQm7mlGSCE9GAM/f/68u7vLdlGRvPRzV9DXteUHBsPYbxn8Tp6bmxukMBgJrc8VOlWRn44E4xX6S/50MOlaNiytru3ERe3tasf8wBE7NVwR3UrxNiRtg1lH5rgWNDHKRUSe9PWA5mrnG0QqJLwo3WAASY8FOcDMRvVELh2LI8x4+lZd6tPDyB4uu7qKXKdgD9csvcyCFJrLBIs8qCEXT6bmRzlvgLIQjAadPIw5DbE8YltAcyRWJ02nKvIzHdN6qnM0GxaZ1a7txEXJLoNcDuz7gYvL/OGa6qKMv7jkjAInSKGGdBExOVNT0FA1ehAMVNUNIoAsEZPEYAycyKVjcdCMZxrhNx2mPyHpTcGNw2UX6BeXHLhUOkhVSSB56E52jwX0iFNcOW5F/Gz5w9mt96qteRj82BCUUy3Sr0r9VSVcTfyvuq2uxeaOMtRU8k4mzzQwevS3dZneDzjJdApGF/pSPi0xVaghnXLUVi4WaF19MksoMzeY8yRmVWGSGDX0RC4dkf0bwGkWId1jxU7g6Bhw4yhaYCbj0mRXqhEF4t2Ck5netZDkcRsO9iskQjAGuSgrRB+zKDWiCqkhKyW1ye5b2WPEiVw6Ivu/UkNwWTP4rcdtY8xWiFT4WX7hd77oYbfz+lcQZt4PBHvg4eFBMppxO3wfGYxN1FCmOfIhvg07hUvHxV8yGDMd6AXKqy+yQ9KZg8bx/K5H+IgkTzsqgl4TfqKny+VS38CQh4NSXjUyZJaZ0RHTeDM7uktHx7JrzKRIUOKvoswAtEwBZkS9y8JGnv1RNE5dXV3pU62qwBF+Hi58x3Xp6FRkFyfo+fX1dfqlGzcBPCMx2MaYvWDlE/NKBQ4Bjfi4C6zfUPLEoBVIB7Fk+bSOFNJ3MqAwq9Uqe8AHIlYU8+j7loe4dApy2eVaSvLpPPIfUge/YU57Usa8CYpmeJ7VY+/eoBfhBc049N5pAvQvAerlYQrp9J0A88ePH1I6FCYTGe5GpTIezt4unYpwTV5BcHXAnQE/dCw4laUIheXB2AadV7sjKb/c6kB+f8lwXlzglwysLPU6rrXI09MTGaqrbGKq7o0B/4nYsi8NgNpY+zGdA+kGoHpKJCVb76UbKhKMhFY6HOLSiWju7XLbYX4EYwDXIRj7spOMwq4ybcy7hcAKpLxM7GyfQWdfHio3fwn7jCB+pwtoFneOkDRAj3h4v7u7i+kcYDIUHOsZmodsfm5d7x0Jqp46xKXTkcsuDfNTEyJ7mci4HC67xlwmLH7WeVz/KC8LKl3ePFwTbZ3vEqM7PJ6nAiclBW2nZGEc0GXQWcaHg+tNSEeLdKxs0mUdR2SWQ3egS6ejHu1WfSKx9NIYsxU0hfWvDUSlaCllAe9OoCDhZdk4TvpKTcFj2kGIr6eUWI3iOSW5JOBDHzNIZ6B0rGyKBbOqJKaZ7B7u0umoyy434SzUxT/6dmpvjJkfaO5qtWL9p8uHYzhEdon7wk7cOI7ySk1aVj6Dk5g+sGeos4xDsBOoiugyGCNAhWklc4CIkMQsKJzMpT1oRrv4FIwB5sdRXOGWG26+44gPBcacI9Lc78NfzwhJryATqFh15b8t1RhQ4C1h+3K5DPYAKUgVidoNEIvFIpU8RgAdhGAPISpFUJXWfm4rFKUq3Ij7ABxgZlHtiVw6GuFWuAnp6QvEp+HvXQWjQK//gvGm4AajHwxzDnC93snkORGsc2KuYGzCsuIs8U2wB/RkHYxp+TX8/TyI2oRvmMhTyDG4x1luGMF+/RMzVVINAX0qoDqBSigbzm2iu1TUPuUP5wZwA3GkNuAgq+cULh2Xj/wXPEpA8rnVaAYAt2uca90BuLFwx9AcCklvBNExyzh71jgQxoEOckDvdPvtPLlEVIRB25qTezJwQOXcbHE+e6rgWjDypOv5gzw8eXCHl2CVcOcnD04G+5XxLqmGYAwvGbJLv6tLHShIbdVJeJkwGYjLPCAz50V7C9BQFhWwSqH61ZfuSFp4wGLWHWOa20UV3DhutEtf6Be3n2C/3u239jGTzoxYnDEEHYPuc5QN9gBDqlIRUrhA4XRCvOVwyUJSwkiXyJb2l4bKazrepa1IqYNh3jTaNZNRj3bPlKNHu4vFgvsKyhjsAWJ/IjuUKNg1CFjC0SYEhlQYo0KeEpBIHQtaVOXxfpZWRYyJwJUdJD4lbKQIEDxSZxntjnGJUIt6sv6SQv2SAzHGpZE42s1wtHsRvGjvXKA7yEcwDkZKVFbYSk9BhsLRJqTHqFBCluVUIJnGm6SEo3FQvBrtjnGJgtWy1BmOBnZ1qYMGMxiXDRedwedy6ArCrr9bZM6F5m+pGW25EgnKjChFZ1tkm6Hi9vaWR/i4tao81Xq2br/uwRiXgFg7HL3yvMu/9G72hpsZzyi6nXMAHva5YtltotdK5dRXSvrSKQOdKjdSJa8KZgX1EM6kmxUUJBt5Sq0/kJEu0S6Jq9Uq2AMPxa+JG2MOwbLbpBqHRjpnCR4zsUb11us18UuwXyFbmpM8mNnWqkDl74d/VhoRDEm7MNIl5BUVJn2xWOi+QvDLQek5HOiSMReLZXcKkKcy2MwgD1JI8JvpIyBtqDw1IH+I3dXVVbkVsCstl7TDSP0oryS1qrmncMmYS0FbvPOA7vTfdO1EZ3w6p0p+D//4fjBq6P0JEJMiZNmXWESg2fdbytn6YAvHyBCMBn2XCLfT3V5qO9ClDn6lZi4Qy26TQXOOILso6VYdFGiZdgP6+qXt4FadnVORjkucQpGJeSHG3f3bBvRd6mDZNReINxlODs/pyFYwupAN1eOZnUf4kFRDtR2yo9pySVsHCO6XAYJilJT0x8fHU7tkzOVg2W3S10pUKRx1QYmed/kAS9VG/aJsa88UdQ5HO9JyicT74o82YSoGj68QT+GSMReFZbeJZLeUGAnQSCVV5lLBEa+rAQ5CUkJMXK1Wi8ViXfsjVak47kTLJfW0/FaMnIhvHIdTuGTMRWHZbaLAs4zgpIkjo91WAIiKcQoyWVflURMxtdsrU6jISAdKWi5JNKu3ARyIzZ3CJWMuCstuE+I+5C8+XEdIIT2NCknR51/BTiiLCxRKUWQmVcqvHVWgFe20yhTagoh5dqXlEv4AHQl2Ai1+e/3a7BQuGXNZhFdrs4DuHPFLBtC2ZvpHwvRxFenBHlCciIYGO2EY4/ogUwlalv7evX5RgsRgD6BlyFwwXvOkLqU8PT1xliLBrvHiUNsl+pJ2hAqp7RCX+vhLBnOB+C+QbYFHcgWA6JHiWUQne8ReLpeEkDRdPmUvFgt+ImcyM1S5nvr5SbCJ86X/t7e3eorHAZrGAXLqlOCsvjTgQE6SAYepKkapkb5LFMcluqN7CT+poezXVpdGQpjsv0BmLg3LrnlLLLvmAvHerjHGTIpl1xhjJsWya4wxk2LZNcaYSbHsGmPMpFh2jTFmUub2AVk4euXr16/6IN+8E5bLpX6lLcUfkJmLYlaya4wx7x9vMhhjzKRYdo0xZlIsu8YYMymWXWOMmRTLrjHGTIpl1xhjJsWya4wxk2LZNcaYSbHsGmPMpFh2jTFmUiy7xhgzKZZdY4yZFMuuMcZMimXXGGMmxbJrjDGTYtk1xphJsewaY8ykWHaNMWZSLLvGGDMpll1jjJkUy64xxkyKZdcYYybFsmuMMZNi2TXGmEmx7BpjzKRYdo0xZlIsu8YYMymWXWOMmRTLrjHGTIpl1xhjJsWya4wxk2LZNcaYSZmn7H4sWC6X4Zw5E7hk4eIlhHPGnDMf//79Gw5nBOvzx48fX79+DbY5fx4eHhDiWU5Xc2l4k8EYYybFsmuMMZPiTYaj8fz8fHt7y8GnT5845uDu7o7j4WQTFbm5udma878BDqj8z58/9O7bt286JXgG/+eff0j/999/McnDg/nj4yNDoQwZ6/WaPDgZ7FfGu6QagvHhA/7gQDAGdnWpgzcZzHxgHs8P+sXCDsYk/Pr1C5H6+fNnsP/+5ZgU0oPdIJPOjFj8+4COgco5S9lgD3z58kWlIqQ8PT2F0wnxnoS2hqSEkS6RLe0vDdFc1t/xLm1FSh0MY84ZR7vHYbFYENChjMEeWK1WRHYoUbBrXF9fh6NNCAypMEaF9/f3SKSOBS2qcgWSkFZFjInAlSNAfErYSBEgeKTOMtod4xJxN/Vk/SWF+nVLEGNcGomjXTMfBvGdG/QLdQjG6ZESlS220lOQoXC0CekxKpSQZTkVSKbxJinhaBwUr0a7Y1yiYLUsdYajgV1d6qDBDIYx54xfqR0BbbkSCcqMKEVnW2SboeL29pZH+Li1qjzVerZuv+7BGJeAWDscvfL8/Fwta4xJseweAb1WKhVHKelLpwx0qtxIlbwqmBXU8/v373SzgoJkI0+p9Qcy0iXaJXG1WgV74OHhgYg4GGYT7ltXV1fr9TrY7xJupVxTXAVtkYUT29i1INOM0QjGJsyrWM9yuaxWNaY5ZuPWPKxNZYDr62t+4lg49wp5KM7ZxUDrCqZuk3nLhQ5R77ygX/1H++PSGcnOqSo8xbee8VPu7u6kxcEe0BM9iZy9ubnZOgI4Vt0oyGi5JBVGf+UGd4Wytl1d6jCDTQZGgC6k+0LvChxLXwJzgDnG2z0KaiiCkfD9+3cmdtzLYtqkNYsxzVFPOhupkKmY1YOZ7ptxQNPM55gCTF0KxoWmlxnEJTIjpEMwGm+8Uyy7R4DmIBibdE5VYa705ytIwtLJIZgfpHP5dUrSnE21FBxLp2aLjkucohImPQcQUhN2danDDGSX1UsXOqvxbeHSZBcRk8RgtNm1oMahvJpKT/ULqCerCrPfHJMN9QzGK8yfLJELkS0i6sEBZmmwhzxRc4XyZE6mRQRtka011S27R4DmIBibdE6VcIHL6ZLCJRcoXTlpuHVnl1k5s2wRHCNDMBr0XWLyUb/6CNR2oEsdZiC7oNW4R/dPDZcSx7L7q6K2TGIy9ijIrGAakCHYrzClScwGR4lxOY9pDlOPWRlZi5hMxVRV5VVcFHhSPucxn8mTLgq1nuXEARIzPyPe231H3N/f62q14KYquJwPDw+LxSLditL9PBgDTAUyUG2wd6fj0mq1Wq/XNIozxBqkkDn7+OwULp01EhGuncz3g7Y+s4uly1rdFY3sWpA5k2WO6BVCeiMHmToFI5vjONulxcxqphSJWTaI2ahEq0ymUNNpW2o9epiStfj/BPmdF/Qr3h53QiM4kniflKnjjM6pEi7SeLd1Z2YZB7sBeehUMDbhVLyxt2i5REGqTQMT+TOmTvK0XOqAGxQMxtnCiNGLMoZ6c6QmwUggsRo5RnYqGONHzRYlRkgpE5UzVjWmORYmJjnT+UksnM1MzmaPYvjGhI+lVA8pMiMkQjAGyAnBeL3KnXGrdGAG0Of9ZHc/WlMB+qOfIllpbQaV6NEmzolyDgnyQDA2Ib0vkS2XNKvKESYn/jAaMvdwqcM8ZBdY23QkXaXvgeGaVIa3lR5pZaimM9/U8V1lN6anxylZukpxd9cMpNGttzrylEEGxbMrRQo1x0lehedRmu5cYm8yHAHJbvrcIfTcwQWQ2UeZVVUKD0FXA+XTEMREHvlbX7cwmcLRjrRcUk8lHynkZMLFcTiFSzOA2zA/3+E+w6nRxOgsh3Km7c2wFXf3588fZqA+6tJtuwVT/f7+HknNZjUuZQ7rwmmzqAr1sCqpqtNTy+4R0EIqv8+VJursVlqf9zJZOQWZrKvyOFMx0bLsSqvISAdKWi5JNKPip+BAbO4ULs0AVizDcrjscnVe/vD7aFrfyU4GN2CkMBg1JHnZPM/M8TDxNPfQQVT1+vq6Op/xCl0mA6DO/eaY0uRn9lZld/hs9+XLX9VZXSCBEPXOC/pVPgKfFOSv3GYlhfRgDPz8+ZOZFzePUjqXg0ooFYxXdOFjN79//67nqRQ9apXpglNkCEaNF4faLlXL4tUhLnVQtBKMc4Zh0X1rj0E4HS9Xuja8rfRIK0OWzgROX+trGgQjIZtXPKfHO7RS0uOULJ1KGGSGOq2BlM6DP9A62TrXhRsDearrN4UaFHC0clY6sAeMKX0DWsKziSWvhLGb2AcNNJc52K+rK7uEpOBbqaHwMi9q8wmoBDlLZwyVkzkTeqZaOrOVJ3UpRfuz6RQveXGo7RJ9STtChdR2iEt95iG79F0LhL5kg08iKYJh3Lq2j8vLlR4hZyWtDGm65oaOBWa1FDljkCHF5Cc5SVSGodYtzWl406VHipYeFYakGiqIiAV7E67dGM0V6mC2HCKVDuwKVafLj+NOe9OAA4xgMKaC+UGvQcsGylsrS47LnypRhCsa51aJKh9ubb17G00rD1WRJxN9IEUZNAuBnJhVKRw8arqktaTiQHPVfm11aSRaEsE4T9J1y0VMlzdDx0AFYxg0zo5c4UcBx6rDqxkSjBpjCtKdrC+kdK4m15oMKAmlJLtMfp0a0xwH6WAKqlLZ/qiSAaoLhyVTrugWXFDqoUiwNzl0HjOTUs0VjBFNVlfyNND69LJrTsq5yy7LIVVS6U68UXFD4s6kYyDbxCsIB2gxkxtMEqPkVRlTkI7r1hshhQw6LiUyRdc9HaitzaX5U6TgOqXosBxhEmOeCAVxOG006i9XilOQqTk1qKpgb3LoK7WHhwdNoBTJbvUVtjEXiN6xoCDxIUPyEV+ssW7TNzDK1nqlKY77Sg3542f2FkgOKEhsMaYgIoUMpaj7OpYCtvhv+JNPagXGNMfoVV9nMcj8VA1UG39GYqm0yyTqQ4g0MYrb47g33jlBfveFGqqx91Eq3xuadrQ7M8432iWkwnP0JdivsCZbD6FZiDcBBGs4kwWemCSmcRzHqGTq2MiCGYrVgvEKgkipVEwIMElJw8wxzWFSlY5TuBCxIL1A+rOoWVcqi+4xs2yQOsB1bD3xt1To0HmsG0jpFokQjMmhacvuzDhT2dVKLh9mofWcC6zkbPFPACOcahwHmJn0y2fSgz0wpmAGskU9mS6jg+hJlF1qwCzHZ2tzVKsBTOunHrQ4TcGHtHLVQ8EsDz5QMIU8qexSkLbSuwXV0rvOFez9oz48ARE5A8Mh8YblcklkThu4iEl0TTiNHzoryHB9fY1/jEVImhYeqbg2epAx84DZeI7/qM/nz59ZohDsBBYOD/6satZtSBrgkZafWroTw8plnLW0cY9VXy5trgJLW3fByNaCEf3VDvLzk75DlBcK3t/fS1JA6kaGl2KbjGluPaA8kIpYhAzUo2PqoV+6rwikL/uDDBEcS3PiszzXMc7QHOhshUF8KzCsuoHQAK4rEdS9/q1M3aOGYE/O27ZuToHWeTDmC2unfGI1M6P5Sg2lR/s50H0posg/3kNKEHvuIcyenth/+MB9Xjv9I9GdxJgZQ5yrEI9jgi8CKKWbmVGXXaRWUS1ih/6mwTmCi56WIX2EZxDyb31EKt/C9ak+axgzG9BcFhfznNUHaG5nlZnzJqhaAwluJpHcjcNRAfkhGG8HPnuTYWbMe5NBEW5G9sbJzIYt3+0+DP8o4chI8w1fBRhz1lT3cztbeeas6ckuTzrPz8/ZFq2EOBgJ2odKNde7scYYU7JFdvmpF2uRx8fHcstpvV4jslmcS2I4quFXasaYy2TLJgOkTzoIcVVzCYrLvYW+UPqVmjHmMun9ugS6SUz6c/hnODGJcx8eHtKPhIHE5XJZamL57fGUEB3/OP2vS9B3bjm6LdHfb+1PxEsY2/v7+1iWghTXKbi+vsbs+397e8tPfVWtlBZ6FgnG8Msz2fXiKjNcW52nkvgEo4eeVuvpyMAYJ7fC3DvHX5cwpsIQSjZhNaKeLBsRUhM6y+kNv/qm9VN/ycDdiL53fkOxA5kRvlgWGNu0bCe0pxXlSWW6JFZOtrTmp6cnLmjaNI8doUwNpF/ZKMJxfLfOAU6ivOXbdp570nQOYiWHMO8vGcxF0Yt2z5cJol0iROpPw3nCTyKyvooBkSDBrO5nSlEch/LG2j5//lyNPYk3kVFycqxfsiwhD2UlUv8Nv0OZ7f+QQiiKFsskz2q1qgo9rpJNnpAH99K7LP0lYCdR/ghqwzE0OvqPSeLh08zRrpkPL9o7O+jXSaNdCVkW20rIOBXsBqgtBGNAEhkdRrOqDxYIeho2tkJI0mOkST3VqtLrjm5mHRF0JB1DiqC56Y48NZOY1Y98Z47RWSQ4GAegUQqGMefM9ldqpoQwkJ9ZQKqAUadaEPcBShTsAekUP2VqW1zHKUSXaXBdjU/JQzicxqSlP9Sflq02Rymi5ugSUIScEOxX0rYISCmV1YamcyMJhjHG/3LwfkjLUsUBaRm6I7MKwsTPTK8zqKfMoF8VjXKJ/JV7uwg6P1PVowiJ+jWWCD6kepoeCyonTyrxgHRC6hg9ZQRSN+RAqunGmAoKemcG/TrpJkNr6FrpEckWB0/Dn4vmCX2Mn9n2QpXWmyupMO1qfwDprG47pJAhblO0oDY0N3N+v96NxJsMZjbMcx6zPt+n7CqDtE/S9n34J7ZIUYYq6Gm6qVqFCqtbtMApGkUlOYCQ2oBx27o9TUMEuaVL6h3pGnyJ79bejcSya2aDZXcfBnnZX3Yz7cNEE1sBph7tg9EApevkQUbT/RCaa7VFer8tqnpR7tc/uZ/pqerP1J/Mnd6Nx7JrZoNldx8GedlfdrNwEtEkEXkK9ib6YiwYDTp5OIWSIoUQd11b2kolW9uKUAlVpcqLSRPBeKXfu/FYds1ssOzuA/VXJaCVHlGG8qGbxFKwgCCRU1n8WFJuswrEjmrTSJOUwYW6DpJ5/LhJB1O3Mav7y1m2/bDsmtngLxn2QYFelc4p0AsuNEhmSvUTCH35kG4RlJDnefObMEGifp0hLY6J6JOirw5SqEcfJwR7G/oEgiLxGzV6V+0a9D/wMOaisOzug8Ql+yRWZl92qwU7jKlTAlrmUVmJYwo5Ed/SB6Wk359FkO+PHz/GP8iQET/mpXfju2bMxWLZ3QdpU5QboYBuTLSbFZRZ6iOMCRJbeRS3Zm0J9LGU145iStmzADnWHLtMnWVznd4Zc5lYdvcBESmf05EtElN9QXGIE9NsnEXysoLaSUh/7yCS5azSyoMaAg4EO4EWy+Y6baGneB73hUV0O+5LkIcuZ7eBTu+MuVDCHu+8oF8nfaUG1I/cxJdj2jDN3n3xLI8npAd7QDnjxwwyWy/6h0u05Rp18qhy3Aj28I6OthDBYCd06gFKpR9gqGZkPfsyjHQ0On7Sy4B0ercTfqVmZoP/Atn+EB4SyiErHBPloWXIkE4JMiyXS2RIkhEhLiYIJSpUWQq2XF0sFvxEy2RW6eeJEbfa4ifNlTsMsLWt9Xqt0BWolkp0X8lQ78gAau4oF4Km/RfIzDyw7JrzwLJrZoP3do0xZlIsu8YYMymWXWOMmRTLrjHGTIpl1xhjJsWya4wxkzLbD8jC0Stfv37NPp4175zlchk/E474AzIzA+Ypu8YY827xJoMxxkyKZdcYYybFsmuMMRPy4cP/AIoNQcAgkuj+AAAAAElFTkSuQmCC%0A">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we rank the eigenvalues in descending order, we get λ1&gt;λ2, which means that the eigenvector that corresponds to the first principal component (PC1) is v1 and the one that corresponds to the second component (PC2) isv2.</p>
+<p>After having the principal components, to compute the percentage of variance (information) accounted for by each component, we divide the eigenvalue of each component by the sum of eigenvalues. If we apply this on the example above, we find that PC1 and PC2 carry respectively 96% and 4% of the variance of the data.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Step-5:-Feature-Vector">
+<a class="anchor" href="#Step-5:-Feature-Vector" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 5: Feature Vector<a class="anchor-link" href="#Step-5:-Feature-Vector"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this step we choose to keep all or some of the principal components. Generally we discard low eigen values components to create a reduced matrix of input called Feature Vector. This we call as dimensionality reduced matrix and the technique is called dimensionality reduction technique</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So, the feature vector is simply a matrix that has as columns the eigenvectors of the components that we decide to keep. This makes it the first step towards dimensionality reduction, because if we choose to keep only p eigenvectors (components) out of n, the final data set will have only p dimensions</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To form the principal components for compuation, we take the transpose of the feature vector and left-multiply it with the transpose of scaled version of original dataset.</p>
+<p>NewData = FeatureVector^T x ScaledData^T</p>
+<p>Here,</p>
+<p>NewData is the Matrix consisting of the principal components,</p>
+<p>FeatureVector is the matrix we formed using the eigenvectors we chose to keep, and</p>
+<p>ScaledData is the scaled version of original dataset</p>
+<p>(‘T’ in the superscript denotes transpose of a matrix which is formed by interchanging the rows to columns and vice versa. In particular, a 2x3 matrix has a transpose of size 3x2)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>References :-</p>
+<ol>
+<li><a href="https://builtin.com/data-science/step-step-explanation-principal-component-analysis">https://builtin.com/data-science/step-step-explanation-principal-component-analysis</a></li>
+<li><a href="https://drscotthawley.github.io/PCA-From-Scratch/">https://drscotthawley.github.io/PCA-From-Scratch/</a></li>
+<li><a href="https://www.dezyre.com/data-science-in-python-tutorial/principal-component-analysis-tutorial">https://www.dezyre.com/data-science-in-python-tutorial/principal-component-analysis-tutorial</a></li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="smsrikanthreddy/blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/jupyter/2020/06/08/PCA.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A tutorial for ML/Data Science concepts.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/smsrikanthreddy" title="smsrikanthreddy"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/smsrikanthreddy" title="smsrikanthreddy"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
