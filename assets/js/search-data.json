@@ -2,10 +2,10 @@
   
     
         "post0": {
-            "title": "Title",
+            "title": "Pandas Advanced Tutorial",
             "content": "import pandas as pd import numpy as np . Reset index . Groupby . apply .",
-            "url": "https://smsrikanthreddy.github.io/blog/2021/05/01/Pandas-Advanced.html",
-            "relUrl": "/2021/05/01/Pandas-Advanced.html",
+            "url": "https://smsrikanthreddy.github.io/blog/jupyter/2021/05/01/Pandas-Advanced.html",
+            "relUrl": "/jupyter/2021/05/01/Pandas-Advanced.html",
             "date": " • May 1, 2021"
         }
         
