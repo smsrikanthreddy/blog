@@ -1,0 +1,24 @@
+---
+toc: true
+layout: post
+description: Machine learning.
+categories: [markdown]
+title: An ML Tutorial
+---
+
+### Machine Learning Tutorial
+
+In this series of post, we'll be learning ML concepts which are required for Data Scienctist role.
+We will go through from basic to adanced level step by step. 
+
+- [`Machine Learning Introduction`](https://github.com/fastai/fastpages)
+	- [`Types of Learning in ML`](https://github.com/fastai/fastpages)
+		- [`Supervised Learning`](https://github.com/fastai/fastpages)
+		- [`Unsupervised Learning`](https://github.com/fastai/fastpages)
+		- [`Reinforcement Learning`](https://github.com/fastai/fastpages)
+	- [`Types of problem statement`](https://github.com/fastai/fastpages)
+		- [`Classification`](https://github.com/fastai/fastpages)
+		- [`Regression`](https://github.com/fastai/fastpages)
+	- [`Linear Regression`](https://github.com/fastai/fastpages)
+	- [`Logistic Regression`](https://github.com/fastai/fastpages)
+	- ['Evaluation Metrics'](https://github.com/smsrikanthreddy/blog/blob/master/_notebooks/Evaluation_Metrics.ipynb)
