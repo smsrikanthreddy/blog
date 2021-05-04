@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Evaluation Metrics | My DataScience Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Evaluation Metrics" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A tutorial for ML/Data Science concepts." />
+<meta property="og:description" content="A tutorial for ML/Data Science concepts." />
+<link rel="canonical" href="https://smsrikanthreddy.github.io/blog/2021/05/03/Evaluation_Metrics.html" />
+<meta property="og:url" content="https://smsrikanthreddy.github.io/blog/2021/05/03/Evaluation_Metrics.html" />
+<meta property="og:site_name" content="My DataScience Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-05-03T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"A tutorial for ML/Data Science concepts.","headline":"Evaluation Metrics","dateModified":"2021-05-03T00:00:00-05:00","datePublished":"2021-05-03T00:00:00-05:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://smsrikanthreddy.github.io/blog/2021/05/03/Evaluation_Metrics.html"},"url":"https://smsrikanthreddy.github.io/blog/2021/05/03/Evaluation_Metrics.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://smsrikanthreddy.github.io/blog/feed.xml" title="My DataScience Blog" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Evaluation Metrics | My DataScience Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Evaluation Metrics" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A tutorial for ML/Data Science concepts." />
+<meta property="og:description" content="A tutorial for ML/Data Science concepts." />
+<link rel="canonical" href="https://smsrikanthreddy.github.io/blog/2021/05/03/Evaluation_Metrics.html" />
+<meta property="og:url" content="https://smsrikanthreddy.github.io/blog/2021/05/03/Evaluation_Metrics.html" />
+<meta property="og:site_name" content="My DataScience Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-05-03T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"A tutorial for ML/Data Science concepts.","headline":"Evaluation Metrics","dateModified":"2021-05-03T00:00:00-05:00","datePublished":"2021-05-03T00:00:00-05:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://smsrikanthreddy.github.io/blog/2021/05/03/Evaluation_Metrics.html"},"url":"https://smsrikanthreddy.github.io/blog/2021/05/03/Evaluation_Metrics.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://smsrikanthreddy.github.io/blog/feed.xml" title="My DataScience Blog" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">My DataScience Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About Me</a><a class="page-link" href="/blog/search/">Search</a><a class="page-link" href="/blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Evaluation Metrics</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-05-03T00:00:00-05:00" itemprop="datePublished">
+        May 3, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      8 min read
+    
+</span></p>
+
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/smsrikanthreddy/blog/tree/master/_notebooks/Evaluation_Metrics.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/smsrikanthreddy/blog/master?filepath=_notebooks%2FEvaluation_Metrics.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/smsrikanthreddy/blog/blob/master/_notebooks/Evaluation_Metrics.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/Evaluation_Metrics.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this notebook we are going to discuss about classificatio and regression metrics. Learning these metrics help in mastering the evaluation metrics concepts</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+<pre><code>    1. Classification Metrics
+    2. Regression  Metrics</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.-Classification-Metrics">1. Classification Metrics<a class="anchor-link" href="#1.-Classification-Metrics"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><p>There are different types of evaluation metrics in machine learning/deep learning and which metric to use depends on the dataset and also problem statement. Knowing when to use which metric is also an important job of Data Scientist.</p>
+</li>
+<li><p>We are going to see the following metrics in details, their mathematics etc.</p>
+</li>
+</ul>
+
+<pre><code>1. Confusion Matrix
+    a. Accuracy
+    b. Precision
+    c. Recall (Sensitivity)
+    d. Specificity
+    d. F1-Score
+
+2. AUC-ROC</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1.-Confusion-Metric">1. Confusion Metric<a class="anchor-link" href="#1.-Confusion-Metric"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><p>Confusion matrix is the most commonly used metrics in machine learning or deep learning . The easiest way of understanding it is through diagrams.</p>
+</li>
+<li><p>Before diving into diagrams, let us understand what it contains and how it represented. The confusion matrix mainly used for classification problems .i.e to identify predicted classes from actual classes.</p>
+</li>
+<li><p>It mainly contain two outputs, one is actual outputs for all classes and the other is predicted outputs. Note that confusion matrix helps in measuring the correctness of our predicted classes from actual classes.</p>
+</li>
+<li><p>Let us take an example of predicted whether a person is having a cancer(1) or not (0). Note, here 1 means positive and 0 means negative</p>
+</li>
+</ul>
+<table>
+<thead><tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">Positive</th>
+<th style="text-align:center">Negative</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Positive</td>
+<td style="text-align:center">TP</td>
+<td style="text-align:center">FP</td>
+</tr>
+<tr>
+<td style="text-align:center">Negative</td>
+<td style="text-align:center">FN</td>
+<td style="text-align:center">TN</td>
+</tr>
+</tbody>
+</table>
+<p>To understand more about confusion matrix, let us define what TP, FP etc. mean.</p>
+<h6 id="True-Positives-(TP):-">True Positives (TP):-<a class="anchor-link" href="#True-Positives-(TP):-"> </a></h6><ul>
+<li>TP mean when the predicted class output and actual classes matches i.e. when the actual output is 1 and the predicted output is also 1</li>
+</ul>
+<h6 id="False-Positives-(FP):-">False Positives (FP):-<a class="anchor-link" href="#False-Positives-(FP):-"> </a></h6><ul>
+<li>FP mean when the predicted class output and actual classes doesn't matches i.e. when the actual output is 0 and the predicted output is also 1 </li>
+</ul>
+<h6 id="Flase-Negatives-(FN):-">Flase Negatives (FN):-<a class="anchor-link" href="#Flase-Negatives-(FN):-"> </a></h6><ul>
+<li>FN mean when the predicted class output and actual classes doesn't matches i.e. when the actual output is 1 and the predicted output is also 0</li>
+</ul>
+<h6 id="True-Negatives-(TN):-">True Negatives (TN):-<a class="anchor-link" href="#True-Negatives-(TN):-"> </a></h6><ul>
+<li>TN mean when the predicted class output and actual classes matches i.e. when the actual output is 0 and the predicted output is also 0</li>
+</ul>
+<p>The ideal scenario should be that the model output 0 false positives and 0 false negatives. But that is not achievable in most of the real time scenarios.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="a).-Accuracy-:-">a). Accuracy :-<a class="anchor-link" href="#a).-Accuracy-:-"> </a></h4><ul>
+<li><p>Accuracy is number of correct prediction given by the model divided by the total number of predcitions.
+Lets us see it in different way,</p>
+</li>
+<li><p>Accuracy =  TP + TN/ TP+FP+FN+TN</p>
+</li>
+<li><p><em>When to use Accuracy</em>:</p>
+
+<pre><code>  Accuracy is a good measure when the target variable classes in the data are nearly balanced.</code></pre>
+</li>
+</ul>
+<h4 id="b).-Precision-:-">b). Precision :-<a class="anchor-link" href="#b).-Precision-:-"> </a></h4><ul>
+<li><p>Precision is a measure that tells us what proportion of patients that we diagnosed as having cancer, actually had cancer. The predicted positives (People predicted as cancerous are TP and FP) and the people actually having a cancer are TP. Precision is defined as no. of true positives divided by the no of true positives plus no of false positivies.</p>
+</li>
+<li><p>Precision = TP/TP+FP</p>
+</li>
+</ul>
+<h4 id="c).-Recall-or-Sensitivity-:-">c). Recall or Sensitivity :-<a class="anchor-link" href="#c).-Recall-or-Sensitivity-:-"> </a></h4><ul>
+<li>Recall is a measure that tells us what proportion of patients that actually had cancer was diagnosed by the algorithm as having cancer. The actual positives (People having cancer are TP and FN) and the people diagnosed by the model having a cancer are TP. (Note: FN is included because the Person actually had a cancer even though the model predicted otherwise.</li>
+<li><p>The ability of a model to find all the relevant cases within a dataset. Precise definition is number of true positivies divided by the number of true positivies plus the number of false negatives.</p>
+</li>
+<li><p>Sensitivity = TP/TP+FN</p>
+</li>
+<li><p><em>When to use Precision and When to use Recall?</em>:</p>
+</li>
+<li><p>It is clear that recall gives us information about a classifier’s performance with respect to false negatives (how many did we miss), while precision gives us information about its performance with respect to false positives(how many did we caught).</p>
+</li>
+<li><p>Precision is about being precise. So even if we managed to capture only one cancer case, and we captured it correctly, then we are 100% precise.</p>
+</li>
+<li><p>Recall is not so much about capturing cases correctly but more about capturing all cases that have “cancer” with the answer as “cancer”. So if we simply always say every case as “cancer”, we have 100% recall.</p>
+</li>
+<li><p>So basically if we want to focus more on minimising False Negatives, we would want our Recall to be as close to 100% as possible without precision being too bad and if we want to focus on minimising False positives, then our focus should be to make Precision as close to 100% as possible.</p>
+</li>
+</ul>
+<h4 id="d).-Specificity-:-">d). Specificity :-<a class="anchor-link" href="#d).-Specificity-:-"> </a></h4><ul>
+<li><p>Specificity is a measure that tells us what proportion of patients that did NOT have cancer, were predicted by the model as non-cancerous. The actual negatives (People actually NOT having cancer are FP and TN) and the people diagnosed by us not having cancer are TN. (Note: FP is included because the Person did NOT actually have cancer even though the model predicted otherwise).</p>
+</li>
+<li><p>Specificity = TN / FP + TN</p>
+</li>
+<li><p>Specificity is the exact opposite of Recall</p>
+</li>
+</ul>
+<h4 id="e).-F1---Score-:-">e). F1 - Score :-<a class="anchor-link" href="#e).-F1---Score-:-"> </a></h4><ul>
+<li><p>We don’t really want to carry both Precision and Recall in our pockets every time we make a model for solving a classification problem. So it’s best if we can get a single score that kind of represents both Precision(P) and Recall(R). F1 score is nothing but harmonic mean.</p>
+</li>
+<li><p>Harmonic mean is kind of an average when x and y are equal. But when x and y are different, then it’s closer to the smaller number as compared to the larger number.</p>
+</li>
+<li><p>While recall expresses the ability to find all relevant instances in a dataset, precision expresses the proportion of the data points our model says was relevant actually were relevant.</p>
+</li>
+<li><p>F1 Score = Harmonic Mean(Precision, Recall)</p>
+</li>
+<li><p>F1 Score = 2 <em> Precision </em> Recall / (Precision + Recall)</p>
+</li>
+<li><p>we use the harmonic mean instead of a simple average because it punishes extreme values. A classifier with precision of 1.0 and a recall of 0.0 has a simple average of 0.5 but an F1-score of 0</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So, we have seen confusion matrix with different metrics like accuracy, precision, recall, F1-score, specificity etc.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2.-AUC-ROC">2. AUC-ROC<a class="anchor-link" href="#2.-AUC-ROC"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.-Regression-Metrics">2. Regression Metrics<a class="anchor-link" href="#2.-Regression-Metrics"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Regression is a task when a model attempts to predict continuous values.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+<pre><code>    1. Mean Absolute Error (MAE)
+    2. Mean Squared Error (MSE)
+    3. Root Mean Squared Error (RMSE)</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1.-Mean-Absolute-Error-(MAE)">1. Mean Absolute Error (MAE)<a class="anchor-link" href="#1.-Mean-Absolute-Error-(MAE)"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><p>This is the mean of the absolute value or errors. 
+
+$$ {\frac{1}{N} \sum_{i=1}^{N}(y_i - \hat{y_i})} $$
+</p>
+</li>
+<li><p>MAE wont punish large errors</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2.-Mean-Squared-Error-(MSE)">2. Mean Squared Error (MSE)<a class="anchor-link" href="#2.-Mean-Squared-Error-(MSE)"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>This is the mean of squared error. Large error are noted more than MAE, making MSE more popular
+
+$$ {\frac{1}{N} \sum_{i=1}^{N}(y_i - \hat{y_i})^2} $$
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="3.-Root-Mean-Squared-Error(RMSE)-and-Root-Mean-Squared-Log-Error-(RMSLE)">3. Root Mean Squared Error(RMSE) and Root Mean Squared Log Error (RMSLE)<a class="anchor-link" href="#3.-Root-Mean-Squared-Error(RMSE)-and-Root-Mean-Squared-Log-Error-(RMSLE)"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>RMSE and RMSLE  are used to find the difference between Actual output values(y) and predicted output values.</p>
+<p>To understand these concepts and their differences, it is important to know what does Mean Squared Error (MSE) mean. MSE incorporates both the variance and the bias of the predictor(target column). RMSE is the square root of MSE. In case of unbiased estimator, RMSE is just the square root of variance, which is actually Standard Deviation.</p>
+<p>Note: Square root of variance is standard deviation.</p>
+<p>Equations of RMSE:-</p>
+<p>
+$$ \sqrt{\frac{1}{N} \sum_{i=1}^{N}(y_i - \hat{y_i})^2} $$
+</p>
+<p>Equation of RMSLE:-</p>
+<p>
+$$ \sqrt{\frac{1}{N}\sum_{i=1}^{N}(\log{(y_i)} - \log{\hat{(y_i}))}^2} $$
+</p>
+<p>In case of RMSLE, you take the log of the predictions and actual values. So basically, what changes is the variance that you are measuring. I believe RMSLE is usually used when you don't want to penalize huge differences in the predicted and the actual values when both predicted and true values are huge numbers.</p>
+<ol>
+<li>If both predicted and actual values are small: RMSE and RMSLE is same.</li>
+<li>If either predicted or the actual value is big: RMSE &gt; RMSLE</li>
+<li>If both predicted and actual values are big: RMSE &gt; RMSLE (RMSLE becomes almost negligible)</li>
+</ol>
+<p>So, RMSLE measurement is not as widely used as MSE and MAE, but it is used as the metric for the Kaggle competition that uses the bike-sharing etc. dataset. It is, effectively, the RMSE of the log-transformed predicted and target values. This measurement is useful when there is a wide range in the target variable, and you do not necessarily want to penalize large errors when the predicted and target values are themselves high. It is also effective when you care about percentage errors rather than the absolute value of errors.</p>
+<p>Lets have a look at the below example</p>
+<p>Case a) : AV = 600,  PV = 1000</p>
+<p>RMSE = 400, RMSLE = 0.5108</p>
+<p>Case b) : AV = 1400, PV = 1000</p>
+<p>RMSE = 400, RMSLE = 0.3365</p>
+<p>Here, AV = Actual Value, PV = Predicted Value</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>References:-</p>
+<ol>
+<li><a href="https://medium.com/greyatom/performance-metrics-for-classification-problems-in-machine-learning-part-i-b085d432082b">https://medium.com/greyatom/performance-metrics-for-classification-problems-in-machine-learning-part-i-b085d432082b</a></li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><a class="u-url" href="/blog/2021/05/03/Evaluation_Metrics.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A tutorial for ML/Data Science concepts.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/smsrikanthreddy" title="smsrikanthreddy"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/smsrikanthreddy" title="smsrikanthreddy"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
