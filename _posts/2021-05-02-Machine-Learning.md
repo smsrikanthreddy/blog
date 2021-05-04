@@ -1,9 +1,9 @@
 ---
 toc: true
 layout: post
-description: Machine learning.
+description: An ML Tutorial
 categories: [markdown]
-title: An ML Tutorial
+title: Machine learning Tutorial
 ---
 
 ### Machine Learning Tutorial
@@ -21,4 +21,4 @@ We will go through from basic to adanced level step by step.
 		- [`Regression`](https://github.com/fastai/fastpages)
 	- [`Linear Regression`](https://github.com/fastai/fastpages)
 	- [`Logistic Regression`](https://github.com/fastai/fastpages)
-	- ['Evaluation Metrics'](https://github.com/smsrikanthreddy/blog/blob/master/_notebooks/Evaluation_Metrics.ipynb)
+	- [`Evaluation Metrics`](https://github.com/smsrikanthreddy/blog/blob/master/_notebooks/Evaluation_Metrics.ipynb)
