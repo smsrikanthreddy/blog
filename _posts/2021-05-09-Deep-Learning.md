@@ -4,6 +4,7 @@ layout: post
 description: An DL Tutorial
 categories: [markdown]
 title: Deep learning Tutorial
+image:images/DL/logo.png
 ---
 
 ### Deep Learning Tutorial
