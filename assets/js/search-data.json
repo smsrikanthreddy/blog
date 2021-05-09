@@ -2,11 +2,11 @@
   
     
         "post0": {
-            "title": "Title",
-            "content": "Linear Regression . Linear regression is one of the simpliest algorithm to predict continous values. Here we will look into, . why the linear regression algorithm is used to predict continous values | why the LMS loss function is used and what is the movtivation for using this | How the gradient descent actuallu work | . To look into more in linear regression lets understand it using some examples, . Living area (feet2) #bedrooms Price(1000$s) . 2104 | 3 | 400 | . 1600 | 3 | 330 | . 2400 | 3 | 369 | . 1416 | 2 | 232 | . 3000 | 4 | 540 | . .. | .. | .. | . Here the input data is 2-Dimensional data. For example $ x^i_{1} $ is the first feature(living area) and $ x^i_{2}$ is the second feature (bedrooms) . To perform supervised learning, we must decide how we’re going to represent functions/hypotheses h in a computer. As an initial choice, let’s say we decide to approximate y as a linear function of x: . $$ h_{ theta}(x) = theta_{0} + theta_{1} x_{1} + theta_{2} x_{2} $$ . Here, the $ theta_{i} $ are the parameters (also called weights) parameterizing the space of linear functions mapping from X to Y. When there is no risk of confusion, we will drop the θ subscript in $h_{ theta(x)}$, and write it more simply as h(x). To simplify our notation, we also introduce the convention of letting x0 = 1 (this is the intercept term), so that, $$ h(x) = sum_{i=0}^{d} theta_{i} x_{i} == theta^Tx, $$ . where on the right-hand side above we are viewing θ and x both as vectors, and here d is the number of input variables (not counting x0). . Learning paramters $ theta$ or cost function . Now, given a training set, how do we pick, or learn, the parameters θ? One reasonable method seems to be to make h(x) close to y, at least for the training examples we have. To formalize this, we will define a function that measures, for each value of the θ’s, how close the $h(x^{(i)})’s$ are to the corresponding y(i) ’s, We define the cost function, . $$J( theta) = frac{1}{2} sum_{i=1}^{n} (h_{ theta}(x(x^i) - y^{(i)})^2 $$ . this is also called ordinary least squares regression model .",
-            "url": "https://smsrikanthreddy.github.io/blog/2021/05/05/Linear-Regression.html",
-            "relUrl": "/2021/05/05/Linear-Regression.html",
-            "date": " • May 5, 2021"
+            "title": "Deep learning Tutorial",
+            "content": "Deep Learning Tutorial . In this series of post, we’ll be learning ML concepts which are required for Data Scienctist role. We will go through from basic to adanced level step by step. . Deep Learning Introduction Neural Network Neural Network basics | Activaton Function | Feed Forward Propagation | backpropagation | . | CNN | RNN | . | .",
+            "url": "https://smsrikanthreddy.github.io/blog/markdown/2021/05/09/Deep-Learning.html",
+            "relUrl": "/markdown/2021/05/09/Deep-Learning.html",
+            "date": " • May 9, 2021"
         }
         
     
