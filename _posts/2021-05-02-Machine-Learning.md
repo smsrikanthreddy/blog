@@ -4,6 +4,7 @@ layout: post
 description: An ML Tutorial
 categories: [markdown]
 title: Machine learning Tutorial
+image: images/DL/logo.png
 ---
 
 ### Machine Learning Tutorial
