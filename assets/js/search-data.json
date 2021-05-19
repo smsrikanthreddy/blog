@@ -14,7 +14,7 @@
     
         ,"post1": {
             "title": "Machine learning Tutorial",
-            "content": "Machine Learning Tutorial . In this series of post, we’ll be learning ML concepts which are required for Data Scienctist role. We will go through from basic to adanced level step by step. . Machine Learning Introduction Types of Learning in ML Supervised Learning | Unsupervised Learning | Reinforcement Learning | . | Types of problem statement Classification | Regression | . | Linear Regression | Logistic Regression | Evaluation Metrics | . | .",
+            "content": "Machine Learning Tutorial . In this series of post, we’ll be learning ML concepts which are required for Data Scienctist role. We will go through from basic to adanced level step by step. . Machine Learning Introduction Types of Learning in ML Supervised Learning | Unsupervised Learning | Reinforcement Learning | . | Types of problem statement Classification | Regression | . | [parameteric and non-parameteric learning algorithm] (https://github.com/fastai/fastpages) | Linear Regression | Logistic Regression | bias, varaiance tradeoff | [Overfitting and Underfitting data] (https://github.com/fastai/fastpages) | Evaluation Metrics | . | .",
             "url": "https://smsrikanthreddy.github.io/blog/markdown/2021/05/02/Machine-Learning.html",
             "relUrl": "/markdown/2021/05/02/Machine-Learning.html",
             "date": " • May 2, 2021"
