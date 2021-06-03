@@ -157,7 +157,6 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#2.-Using-conda-create-command">2. Using conda create command </a></li>
 <li class="toc-entry toc-h3"><a href="#Other-steps">Other steps </a>
 <ul>
-<li class="toc-entry toc-h6"><a href="#to-activate-conda-env">to activate conda env </a></li>
 <li class="toc-entry toc-h4"><a href="#References">References </a></li>
 </ul>
 </li>
@@ -254,11 +253,10 @@ dependencies:
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>conda create --name tablenv
-###### for specific version</li>
-<li>conda create -n tablenv python=3.7.7</li>
-</ul>
+
+<pre><code>* conda create --name tablenv &lt;br&gt;
+#### for specific version
+* conda create -n tablenv python=3.7.7</code></pre>
 
 </div>
 </div>
@@ -269,22 +267,19 @@ dependencies:
 <h3 id="Other-steps">
 <a class="anchor" href="#Other-steps" aria-hidden="true"><span class="octicon octicon-link"></span></a>Other steps<a class="anchor-link" href="#Other-steps"> </a>
 </h3>
-<h6 id="to-activate-conda-env">
-<a class="anchor" href="#to-activate-conda-env" aria-hidden="true"><span class="octicon octicon-link"></span></a>to activate conda env<a class="anchor-link" href="#to-activate-conda-env"> </a>
-</h6>
-<ul>
-<li>conda create -n tablenv python=3.7.7
-###### to deactivate env</li>
-<li>conda create -n tablenv python=3.7.7
-###### to make available for jupyter notebook</li>
-<li>conda install -c anaconda ipykernel</li>
-<li>ipython kernel install --user --name=tablenv
-###### to remove environment</li>
-<li>conda env remove -n tablenv
-###### list the environment</li>
-<li>conda env list</li>
-<li>conda info -e</li>
-</ul>
+<pre><code>###### to activate conda env
+* conda activate tablenv 
+###### to deactivate env
+* conda deactivate tablenv 
+###### to make available for jupyter notebook
+* conda install -c anaconda ipykernel
+###### to make available for jupyter notebook
+* ipython kernel install --user --name=tablenv
+###### to remove environment
+* conda env remove -n tablenv
+###### list the environment 
+*  conda env list
+*  conda info -e</code></pre>
 
 </div>
 </div>
