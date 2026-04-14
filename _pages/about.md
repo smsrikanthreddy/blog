@@ -1,13 +1,27 @@
+# 👋 Hello, I'm Srikanth
+
+I am a passionate lifelong learner and developer currently diving deep into the worlds of **Machine Learning**, **Data Engineering**, and **Software Craftsmanship**. 
+
 ---
-layout: page
-title: About Me
-permalink: /about/
+
+### 🚀 My Focus
+Currently, I'm spending my time on:
+- **MLOps**: Understanding how to bring models from research to production.
+- **Deep Architecture**: Exploring Transformers and the latest in Generative AI.
+- **Data Pipelines**: Building robust, scalable systems using Python and cloud tools.
+
+### 📚 Why this blog?
+I believe that the best way to learn is to teach. This blog serves as my "Public Second Brain" where I document my daily learnings, technical challenges, and personal projects.
+
+### 🛠 Tech Stack
+I love working with:
+- **Languages**: Python, JavaScript, SQL
+- **ML**: PyTorch, Scikit-learn, HuggingFace
+- **Tools**: Docker, Git, VS Code
+
 ---
 
-This is where you put the contents of your *About* page. Like all your pages, it's in [Markdown](https://guides.github.com/features/mastering-markdown/) format.
+> "Live as if you were to die tomorrow. Learn as if you were to live forever." — Mahatma Gandhi
 
-This website is powered by **[fastpages](https://github.com/fastai/fastpages)** [^1].
-
-
-
-[^1]:a blogging platform that natively supports Jupyter notebooks in addition to other formats.
+---
+*This blog is powered by [Fastpages](https://github.com/fastai/fastpages).*
