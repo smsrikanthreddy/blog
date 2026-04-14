@@ -1,0 +1,32 @@
+/* CSS for Quarto Listing cards to match premium Jekyll look */
+.quarto-post .card {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background-color: rgba(30, 41, 59, 0.7) !important;
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+}
+
+.quarto-post:hover .card {
+  border-color: #8b5cf6 !important;
+  background-color: rgba(30, 41, 59, 0.9) !important;
+}
+
+.section-divider {
+  display: flex;
+  align-items: center;
+  margin: 4rem 0 2rem;
+}
+
+.section-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-right: 1.5rem;
+}
+
+.section-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
