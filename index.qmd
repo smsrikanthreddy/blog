@@ -1,0 +1,37 @@
+---
+title: "Srikanth's Dev Journal"
+listing:
+  contents: 
+    - posts
+    - notebooks
+  sort: "date desc"
+  type: default
+  categories: true
+  sort-ui: false
+  filter-ui: false
+page-layout: full
+title-block-banner: false
+---
+
+::: {.hero-intro}
+<img src="images/avatar.png" alt="Srikanth's Avatar" class="hero-avatar">
+<div class="hero-greeting">👋 Hey, I'm Srikanth</div>
+<h1 class="hero-title">My Dev Journal</h1>
+<p class="hero-subtitle">I write about what I learn every day — Machine Learning, Deep Learning, Data Engineering, and whatever rabbit hole I fall into. Think of this as my public notebook.</p>
+<div class="hero-tags">
+<span class="hero-tag">🧠 ML / AI</span>
+<span class="hero-tag">🔬 Data Science</span>
+<span class="hero-tag">🐍 Python</span>
+<span class="hero-tag">📊 Statistics</span>
+<span class="hero-tag">⚙️ Engineering</span>
+</div>
+<div class="hero-socials">
+<a href="https://github.com/smsrikanthreddy" target="_blank" class="hero-social-link"><i class="bi bi-github"></i> GitHub</a>
+<a href="https://twitter.com/smsrikanthreddy" target="_blank" class="hero-social-link"><i class="bi bi-twitter"></i> Twitter</a>
+<a href="about.qmd" class="hero-social-link"><i class="bi bi-person"></i> More About Me</a>
+</div>
+:::
+
+<div class="section-divider">
+<span class="section-label">📝 Latest Posts</span>
+</div>

@@ -1,0 +1,16 @@
+---
+title: "Srikanth's Dev Journal"
+listing:
+  contents: 
+    - _posts
+    - _notebooks
+  sort: "date desc"
+  type: default
+  categories: true
+  sort-ui: false
+  filter-ui: false
+page-layout: full
+title-block-banner: true
+---
+
+Welcome to my learning hub! Here I document my journey through Data Science and Engineering.

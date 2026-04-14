@@ -1,0 +1,31 @@
+---
+title: "About Me"
+---
+
+# 👋 Hello, I'm Srikanth
+
+I am a passionate lifelong learner and developer currently diving deep into the worlds of **Machine Learning**, **Data Engineering**, and **Software Craftsmanship**. 
+
+---
+
+### 🚀 My Focus
+Currently, I'm spending my time on:
+- **MLOps**: Understanding how to bring models from research to production.
+- **Deep Architecture**: Exploring Transformers and the latest in Generative AI.
+- **Data Pipelines**: Building robust, scalable systems using Python and cloud tools.
+
+### 📚 Why this blog?
+I believe that the best way to learn is to teach. This blog serves as my "Public Second Brain" where I document my daily learnings, technical challenges, and personal projects.
+
+### 🛠 Tech Stack
+I love working with:
+- **Languages**: Python, JavaScript, SQL
+- **ML**: PyTorch, Scikit-learn, HuggingFace
+- **Tools**: Docker, Git, VS Code
+
+---
+
+> "Live as if you were to die tomorrow. Learn as if you were to live forever." — Mahatma Gandhi
+
+---
+*This blog is powered by [Quarto](https://quarto.org).*

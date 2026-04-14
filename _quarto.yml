@@ -1,0 +1,26 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Srikanth's Blog Posts"
+  description: "Day-to-day learning in ML, AI, Data Science & Engineering"
+  navbar:
+    right:
+      - icon: github
+        href: https://github.com/smsrikanthreddy
+      - icon: twitter
+        href: https://twitter.com/smsrikanthreddy
+      - text: About
+        href: about.qmd
+  sidebar: false
+
+format:
+  html:
+    theme: [darkly, custom.scss]
+    code-fold: true
+    code-summary: "Show code"
+    toc: true
+    css: styles.css
+
+editor: visual
