@@ -4,7 +4,7 @@ project:
 
 website:
   title: "Srikanth's Learning Hub"
-  description: "Day-to-day learning in ML, AI, Data Science & Engineering"
+  description: "Day-to-day learning in AI, ML, DL & GenAI/Agentic AI"
   navbar:
     left:
       - text: Home
@@ -17,8 +17,8 @@ website:
         href: python.qmd
       - text: Statistics
         href: statistics.qmd
-      - text: Engineering
-        href: engineering.qmd
+      - text: GenAI
+        href: genai.qmd
     right:
       - icon: github
         href: https://github.com/smsrikanthreddy

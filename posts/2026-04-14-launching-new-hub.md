@@ -26,7 +26,7 @@ Today marks a special day. I've successfully overhauled my personal blog to bett
 As I launch this new space, I'm setting a few milestones for the next 30 days:
 1. **Mathematics for ML**: Deep dive into Linear Algebra and Calculus.
 2. **PyTorch Fundamentals**: Building a custom CNN from scratch.
-3. **Data Engineering Basics**: Setting up a simple Airflow pipeline.
+3. **GenAI Basics**: Setting up a simple Airflow pipeline.
 
 ## 🚀 Stay Tuned
 I'll be posting here daily (or as close to it as possible). Whether it's a small code snippet, a breakthrough in understanding, or a "failed" experiment, it's going on the journal.

@@ -4,7 +4,7 @@ title: "About Me"
 
 # 👋 Hello, I'm Srikanth
 
-I am a passionate lifelong learner and developer currently diving deep into the worlds of **Machine Learning**, **Data Engineering**, and **Software Craftsmanship**. 
+I am a passionate lifelong learner and developer currently diving deep into the worlds of **Machine Learning**, **GenAI**, and **Software Craftsmanship**. 
 
 ---
 

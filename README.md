@@ -1,6 +1,6 @@
 # 🧠 My Dev Journal
 
-Welcome to my personal learning hub! This is where I document my journey through **Machine Learning**, **Data Engineering**, and **Software Craftsmanship**. This blog is designed as a "Public Second Brain" to capture daily insights, technical deep-dives, and project updates.
+Welcome to my personal learning hub! This is where I document my journey through **Machine Learning**, **GenAI**, and **Software Craftsmanship**. This blog is designed as a "Public Second Brain" to capture daily insights, technical deep-dives, and project updates.
 
 ---
 

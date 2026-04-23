@@ -1,12 +1,12 @@
 ---
-title: "Engineering"
+title: "GenAI"
 listing:
   contents: 
     - posts
     - notebooks
   include:
     categories:
-      - Engineering
+      - GenAI
   sort: "date desc"
   type: default
   categories: false

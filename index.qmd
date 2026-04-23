@@ -8,13 +8,13 @@ title-block-banner: false
 <img src="images/srikanth_suit_blue.jpg" alt="Srikanth's Avatar" class="hero-avatar">
 <div class="hero-greeting">👋 Hey, I'm Srikanth</div>
 <h1 class="hero-title">My Learning Hub</h1>
-<p class="hero-subtitle">I write about what I learn every day — Machine Learning, Deep Learning, Data Engineering, and whatever rabbit hole I fall into. Think of this as my public notebook.</p>
+<p class="hero-subtitle">I write about what I learn every day — Machine Learning, Deep Learning, GenAI, and whatever rabbit hole I fall into. Think of this as my public notebook.</p>
 <div class="hero-tags">
 <a href="ml.qmd" class="hero-tag" style="text-decoration: none;">🧠 ML</a>
 <a href="dl.qmd" class="hero-tag" style="text-decoration: none;">🔬 DL</a>
 <a href="python.qmd" class="hero-tag" style="text-decoration: none;">🐍 Python</a>
 <a href="statistics.qmd" class="hero-tag" style="text-decoration: none;">📊 Statistics</a>
-<a href="engineering.qmd" class="hero-tag" style="text-decoration: none;">⚙️ Engineering</a>
+<a href="genai.qmd" class="hero-tag" style="text-decoration: none;">⚙️ GenAI</a>
 </div>
 <div class="hero-socials">
 <a href="https://github.com/smsrikanthreddy" target="_blank" class="hero-social-link"><i class="bi bi-github"></i> GitHub</a>
