@@ -2,7 +2,7 @@
 aliases:
 - /markdown/2021/05/09/Deep-Learning
 categories:
-- markdown
+- DL
 date: '2021-05-09'
 description: An DL Tutorial
 image: /images/DL/logo.png

@@ -3,9 +3,22 @@ project:
   output-dir: _site
 
 website:
-  title: "Srikanth's Blog Posts"
+  title: "Srikanth's Learning Hub"
   description: "Day-to-day learning in ML, AI, Data Science & Engineering"
   navbar:
+    left:
+      - text: Home
+        href: index.qmd
+      - text: ML
+        href: ml.qmd
+      - text: DL
+        href: dl.qmd
+      - text: Python
+        href: python.qmd
+      - text: Statistics
+        href: statistics.qmd
+      - text: Engineering
+        href: engineering.qmd
     right:
       - icon: github
         href: https://github.com/smsrikanthreddy

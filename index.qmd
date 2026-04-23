@@ -1,29 +1,20 @@
 ---
-title: "Srikanth's Dev Journal"
-listing:
-  contents: 
-    - posts
-    - notebooks
-  sort: "date desc"
-  type: default
-  categories: true
-  sort-ui: false
-  filter-ui: false
+title: "Srikanth's Learning Hub"
 page-layout: full
 title-block-banner: false
 ---
 
 ::: {.hero-intro}
-<img src="images/avatar.png" alt="Srikanth's Avatar" class="hero-avatar">
+<img src="images/srikanth_suit_blue.jpg" alt="Srikanth's Avatar" class="hero-avatar">
 <div class="hero-greeting">👋 Hey, I'm Srikanth</div>
-<h1 class="hero-title">My Dev Journal</h1>
+<h1 class="hero-title">My Learning Hub</h1>
 <p class="hero-subtitle">I write about what I learn every day — Machine Learning, Deep Learning, Data Engineering, and whatever rabbit hole I fall into. Think of this as my public notebook.</p>
 <div class="hero-tags">
-<span class="hero-tag">🧠 ML / AI</span>
-<span class="hero-tag">🔬 Data Science</span>
-<span class="hero-tag">🐍 Python</span>
-<span class="hero-tag">📊 Statistics</span>
-<span class="hero-tag">⚙️ Engineering</span>
+<a href="ml.qmd" class="hero-tag" style="text-decoration: none;">🧠 ML</a>
+<a href="dl.qmd" class="hero-tag" style="text-decoration: none;">🔬 DL</a>
+<a href="python.qmd" class="hero-tag" style="text-decoration: none;">🐍 Python</a>
+<a href="statistics.qmd" class="hero-tag" style="text-decoration: none;">📊 Statistics</a>
+<a href="engineering.qmd" class="hero-tag" style="text-decoration: none;">⚙️ Engineering</a>
 </div>
 <div class="hero-socials">
 <a href="https://github.com/smsrikanthreddy" target="_blank" class="hero-social-link"><i class="bi bi-github"></i> GitHub</a>
@@ -31,7 +22,3 @@ title-block-banner: false
 <a href="about.qmd" class="hero-social-link"><i class="bi bi-person"></i> More About Me</a>
 </div>
 :::
-
-<div class="section-divider">
-<span class="section-label">📝 Latest Posts</span>
-</div>

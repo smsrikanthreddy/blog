@@ -2,7 +2,7 @@
 aliases:
 - /markdown/2021/05/02/Machine-Learning
 categories:
-- markdown
+- ML
 date: '2021-05-02'
 description: An ML Tutorial
 image: /images/ML/logo.png
