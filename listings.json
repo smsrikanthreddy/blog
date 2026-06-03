@@ -1,15 +1,5 @@
 [
   {
-    "listing": "/genai.html",
-    "items": [
-      "/posts/Foundational_LLMs.html"
-    ]
-  },
-  {
-    "listing": "/listing.html",
-    "items": []
-  },
-  {
     "listing": "/dl.html",
     "items": [
       "/notebooks/2021-10-31-unsupervised_learning.html",
@@ -18,16 +8,13 @@
     ]
   },
   {
+    "listing": "/listing.html",
+    "items": []
+  },
+  {
     "listing": "/statistics.html",
     "items": [
       "/notebooks/2021-04-17-math-and-jupyter-commands-in-notebook.html"
-    ]
-  },
-  {
-    "listing": "/ml.html",
-    "items": [
-      "/posts/2021-05-02-Machine-Learning.html",
-      "/notebooks/2020-06-08-pca.html"
     ]
   },
   {
@@ -38,6 +25,19 @@
       "/notebooks/2021-06-01-how to create environment in python.html",
       "/notebooks/2021-05-01-pandas advanced.html",
       "/notebooks/2021-04-30-numpy tutorial.html"
+    ]
+  },
+  {
+    "listing": "/ml.html",
+    "items": [
+      "/posts/2021-05-02-Machine-Learning.html",
+      "/notebooks/2020-06-08-pca.html"
+    ]
+  },
+  {
+    "listing": "/genai.html",
+    "items": [
+      "/posts/Foundational_LLMs.html"
     ]
   }
 ]
