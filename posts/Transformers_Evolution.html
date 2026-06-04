@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-06-04">
+<meta name="description" content="Transformers Evolution">
 
-<title>transformers_evolution – Srikanth's Learning Hub</title>
+<title>Transformers Evolution – Srikanth’s Learning Hub</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -143,15 +145,53 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#transformer-evolution" id="toc-transformer-evolution" class="nav-link active" data-scroll-target="#transformer-evolution">Transformer Evolution</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Transformers Evolution</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">GenAI</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Transformers Evolution
+  </div>
+</div>
 
 
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 4, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<section id="transformer-evolution" class="level3">
+<h3 class="anchored" data-anchor-id="transformer-evolution">Transformer Evolution</h3>
 <p>In this post we’ll see evolution of transformers, these include encoder-only, encoder-decoder, and decoder-only transfomers architectures. We start with GPT-1 and BERT and end with Google latest family of Gemini models.</p>
 <section id="encoder-only-transformers" class="level4">
 <h4 class="anchored" data-anchor-id="encoder-only-transformers">Encoder-only Transformers</h4>
@@ -176,11 +216,24 @@ ul.task-list li input[type="checkbox"] {
 <li>Additionally, its cohesion and fluency were limited to shorter text sequences, and longer passages would lack cohesion.</li>
 </ul></li>
 </ul>
+<p>GPT-2(2019-OpenAI) :-</p>
+<ul>
+<li>GPT-2 main innvovation was a direct scale-up, with tenfold increase in both its parameter count and the size of training dataset</li>
+<li>Data :- Trained on a large (40GB) and diverse dataset called WebText, which consists of 45M webpages from Reddit with a karma rating of atleast three. Karma 3 means - reasonable level of quality.</li>
+<li>Parameters :- 1.5 Billion parameters, which was an order of magnitude larger than the previous model. More parameters increases the model learning capacity and improves its ability to capture complex patterns in the training data</li>
+<li>The authors trained 4 models with 117M (same as GPT-1), 345M, 762M and 1.5B parameters and found that the model with the most paramerters performed better on every subsequent task.</li>
+<li>Scaling up resulted in a model that was able to generate more coherent and realistic text then GPT-1. It demonstrated significant improvement in capturing long range dependencies and common sense reasoning.</li>
+<li>Despite larger model, it did not perform well in some tasks like reading comprehension, summarization and translation</li>
+<li>its significant achivement is its ability to perform zero-shot learning on a variety of tasks. Zero-shot task transfer is the ability of a model to generalize to a new task without being trained on it, which requires the model to understand the task based on the given instruction.</li>
+<li>GPT-2 was able to perform tasks such as machine translation, text summarization, and reading comprehension without any explicit supervision.</li>
+</ul>
+<p>GPT-3/3.5/4 (2020/2022/2023-OpenAI) :-</p>
 </section>
 <section id="encoder-decoder-transformers" class="level4">
 <h4 class="anchored" data-anchor-id="encoder-decoder-transformers">Encoder-Decoder Transformers</h4>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
