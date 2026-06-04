@@ -11,6 +11,7 @@ _notebooks/.ipynb_checkpoints
 .netlify
 .tweet-cache
 __pycache__
-
+.DS_Store
+images/.DS_Store
 /.quarto/
 **/*.quarto_ipynb
