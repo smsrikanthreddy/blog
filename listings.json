@@ -1,20 +1,15 @@
 [
   {
-    "listing": "/dl.html",
+    "listing": "/genai.html",
     "items": [
-      "/notebooks/2021-10-31-unsupervised_learning.html",
-      "/posts/2021-05-09-Deep-Learning.html",
-      "/notebooks/2021-04-15-neural-collaborative-filtering.html"
+      "/posts/Foundational_LLMs.html"
     ]
   },
   {
-    "listing": "/listing.html",
-    "items": []
-  },
-  {
-    "listing": "/statistics.html",
+    "listing": "/ml.html",
     "items": [
-      "/notebooks/2021-04-17-math-and-jupyter-commands-in-notebook.html"
+      "/posts/2021-05-02-Machine-Learning.html",
+      "/notebooks/2020-06-08-pca.html"
     ]
   },
   {
@@ -28,16 +23,21 @@
     ]
   },
   {
-    "listing": "/ml.html",
+    "listing": "/statistics.html",
     "items": [
-      "/posts/2021-05-02-Machine-Learning.html",
-      "/notebooks/2020-06-08-pca.html"
+      "/notebooks/2021-04-17-math-and-jupyter-commands-in-notebook.html"
     ]
   },
   {
-    "listing": "/genai.html",
+    "listing": "/listing.html",
+    "items": []
+  },
+  {
+    "listing": "/dl.html",
     "items": [
-      "/posts/Foundational_LLMs.html"
+      "/notebooks/2021-10-31-unsupervised_learning.html",
+      "/posts/2021-05-09-Deep-Learning.html",
+      "/notebooks/2021-04-15-neural-collaborative-filtering.html"
     ]
   }
 ]
