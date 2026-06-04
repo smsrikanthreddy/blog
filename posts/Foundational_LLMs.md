@@ -60,4 +60,3 @@ where the magic happens!.
 
 
 ![Transformer Architecture](images/LLM/transformer.png)
-
