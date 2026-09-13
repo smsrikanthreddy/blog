@@ -7,18 +7,18 @@ website:
   description: "Day-to-day learning in AI, ML, DL & GenAI/Agentic AI"
   navbar:
     left:
-      - text: Home
-        href: index.qmd
       - text: ML
         href: ml.qmd
       - text: DL
         href: dl.qmd
+      - text: GenAI
+        href: genai.qmd
       - text: Python
         href: python.qmd
       - text: Statistics
-        href: statistics.qmd
-      - text: GenAI
-        href: genai.qmd
+        href: statistics.qmd  
+      - text: System Design
+        href: sd.qmd
     right:
       - icon: github
         href: https://github.com/smsrikanthreddy
