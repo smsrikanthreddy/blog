@@ -15,9 +15,9 @@ We'll be discussing about deployment architecture using GCP for both realtime se
 
 ## Realtime Deployment Architecture
 
-![Realtime Serving Architecture](images/system_design/realtime_deploy.png)
+![Realtime Serving Architecture](/blog/images/SD/realtime_deploy.png)
 
-#### Step by Step RT Pipeline Description:
+### Step by Step RT Pipeline Description:
 
 Step 1: Code Push & Jenkins Trigger
     * Trigger : A developer pushes changes (DAG definitions, pyspark scripts or SQL logic) to the Git repository (GitHub, Gitlab, Bitbucket).
@@ -59,9 +59,9 @@ Step 6: Pipeline health Check & Verificaiton
 
 ## Batch Deployment Architecture
 
-![Batch Serving Architecture](images/system_design/batch_deploy.png)
+![Batch Serving Architecture](/blog/images/SD/batch_deploy.png)
 
-#### Step by Step Batch Pipeline Description:
+### Step by Step Batch Pipeline Description
 
 Step 1: Code Push & Jenkins Trigger
     * Trigger : A developer pushes changes (DAG definitions, pyspark scripts or SQL logic) to the Git repository (GitHub, Gitlab, Bitbucket).
