@@ -3,7 +3,7 @@ project:
   output-dir: _site
 
 website:
-  title: "Srikanth's Learning Hub"
+  title: "Home"
   description: "Day-to-day learning in AI, ML, DL & GenAI/Agentic AI"
   navbar:
     left:
