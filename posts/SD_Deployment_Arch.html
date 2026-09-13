@@ -153,8 +153,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#realtime-deployment-architecture" id="toc-realtime-deployment-architecture" class="nav-link active" data-scroll-target="#realtime-deployment-architecture">Realtime Deployment Architecture</a></li>
-  <li><a href="#batch-deployment-architecture" id="toc-batch-deployment-architecture" class="nav-link" data-scroll-target="#batch-deployment-architecture">Batch Deployment Architecture</a></li>
+  <li><a href="#realtime-deployment-architecture" id="toc-realtime-deployment-architecture" class="nav-link active" data-scroll-target="#realtime-deployment-architecture">Realtime Deployment Architecture</a>
+  <ul class="collapse">
+  <li><a href="#step-by-step-rt-pipeline-description" id="toc-step-by-step-rt-pipeline-description" class="nav-link" data-scroll-target="#step-by-step-rt-pipeline-description">Step by Step RT Pipeline Description:</a></li>
+  </ul></li>
+  <li><a href="#batch-deployment-architecture" id="toc-batch-deployment-architecture" class="nav-link" data-scroll-target="#batch-deployment-architecture">Batch Deployment Architecture</a>
+  <ul class="collapse">
+  <li><a href="#step-by-step-batch-pipeline-description" id="toc-step-by-step-batch-pipeline-description" class="nav-link" data-scroll-target="#step-by-step-batch-pipeline-description">Step by Step Batch Pipeline Description</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -199,12 +205,12 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="realtime-deployment-architecture">Realtime Deployment Architecture</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/system_design/realtime_deploy.png" class="img-fluid figure-img"></p>
+<p><img src="../blog/images/SD/realtime_deploy.png" class="img-fluid figure-img"></p>
 <figcaption>Realtime Serving Architecture</figcaption>
 </figure>
 </div>
-<section id="step-by-step-rt-pipeline-description" class="level4">
-<h4 class="anchored" data-anchor-id="step-by-step-rt-pipeline-description">Step by Step RT Pipeline Description:</h4>
+<section id="step-by-step-rt-pipeline-description" class="level3">
+<h3 class="anchored" data-anchor-id="step-by-step-rt-pipeline-description">Step by Step RT Pipeline Description:</h3>
 <p>Step 1: Code Push &amp; Jenkins Trigger * Trigger : A developer pushes changes (DAG definitions, pyspark scripts or SQL logic) to the Git repository (GitHub, Gitlab, Bitbucket).</p>
 <pre><code>* Jenkins Pipeline Invocation : A webhook notifies the jenkins master server, which executes the defined Jenkinsfile pipeline.</code></pre>
 <p>Step 2: Continuous Integration &amp; Pre-Flight Testing (Jenkins) * Authentication: Jenkins authenticates with Google Cloud Platform using a dedicated GCP Service Account key stoored in the Jenkins Credetials Manager.</p>
@@ -230,12 +236,12 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="batch-deployment-architecture">Batch Deployment Architecture</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/system_design/batch_deploy.png" class="img-fluid figure-img"></p>
+<p><img src="../blog/images/SD/batch_deploy.png" class="img-fluid figure-img"></p>
 <figcaption>Batch Serving Architecture</figcaption>
 </figure>
 </div>
-<section id="step-by-step-batch-pipeline-description" class="level4">
-<h4 class="anchored" data-anchor-id="step-by-step-batch-pipeline-description">Step by Step Batch Pipeline Description:</h4>
+<section id="step-by-step-batch-pipeline-description" class="level3">
+<h3 class="anchored" data-anchor-id="step-by-step-batch-pipeline-description">Step by Step Batch Pipeline Description</h3>
 <p>Step 1: Code Push &amp; Jenkins Trigger * Trigger : A developer pushes changes (DAG definitions, pyspark scripts or SQL logic) to the Git repository (GitHub, Gitlab, Bitbucket).</p>
 <pre><code>* Jenkins Pipeline Invocation : A webhook notifies the jenkins master server, which executes the defined Jenkinsfile pipeline on an agent node.</code></pre>
 <p>Step 2: Continuous Integration &amp; Pre-Flight Testing (Jenkins Agent) * DAG Syntax &amp; Cycle Verification : Jenkins creates an isolated Python virtual environment to parse the Apache Airflow DAGs locally. It verifies there are no import errors, missing task dependencies, or circular loops before pushing to GCP.</p>
